@@ -1,9 +1,17 @@
 import React from "react";
 
-import "./assets/styles/main.scss";
+import "./styles.scss";
 
 import Sidebar from "./components/Sidebar";
+import Player from "./components/Player";
 
-const App = () => <Sidebar />;
+const App = () => (
+  <main className="wrapper">
+    <div className="container">
+      <Sidebar />
+    </div>
+    <Player />
+  </main>
+);
 
 export default App;

@@ -1,0 +1,87 @@
+.player {
+  height: 6.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  background-color: #282828;
+  padding: 0.75rem;
+
+  img {
+    width: 5.5rem;
+    height: 5.5rem;
+  }
+
+  &__current-music {
+    display: flex;
+    align-items: center;
+  }
+
+  &__current-music-info {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    span {
+      font-size: 1.4em;
+      color: #fff;
+    }
+
+    small {
+      font-size: 1.2em;
+      color: #b3b3b3;
+      margin-top: 0.5rem;
+    }
+  }
+
+  &__volume {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    margin-right: 1.25rem;
+
+    img {
+      cursor: pointer;
+      margin-right: 0.31rem;
+      height: 1.8rem;
+      width: 1.8rem;
+    }
+  }
+
+  &__handle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  &__handle-controls {
+      display: flex;
+      justify-content: center;
+
+      button {
+          background: transparent;
+          border: 0;
+          margin: 0 15px;
+
+          img {
+            width: 1.8rem;
+            height: 1.8rem;
+          }
+      }
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+
+    span {
+        font-size: 1em;
+        color: #b3b3b3;
+    }
+  }
+
+  &__time-progress {
+    width: 500px;
+    margin: 0 15px;
+  }
+}
