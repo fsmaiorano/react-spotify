@@ -8,10 +8,10 @@ const Sidebar = () => (
     <nav className="sidebar__navigation">
       <div className="sidebar__navigation-content sidebar__navigation-content--main">
         <li>
-          <a href="#">Navegar</a>
+          <a href="javascript;">Navegar</a>
         </li>
         <li>
-          <a href="#">Rádio</a>
+          <a href="javascript">Rádio</a>
         </li>
       </div>
 
@@ -20,34 +20,34 @@ const Sidebar = () => (
           <span>SUA BIBLIOTECA</span>
         </li>
         <li>
-          <a href="#">Seu Daily Mix</a>
+          <a href="javascript">Seu Daily Mix</a>
         </li>
         <li>
-          <a href="#">Tocados Recentemente</a>
+          <a href="javascript">Tocados Recentemente</a>
         </li>
         <li>
-          <a href="#">Músicas</a>
+          <a href="javascript">Músicas</a>
         </li>
         <li>
-          <a href="#">Tocados Recentemente</a>
+          <a href="javascript">Tocados Recentemente</a>
         </li>
         <li>
-          <a href="#">Álbums</a>
+          <a href="javascript">Álbums</a>
         </li>
         <li>
-          <a href="#">Artistas</a>
+          <a href="javascript">Artistas</a>
         </li>
         <li>
-          <a href="#">Estações</a>
+          <a href="javascript">Estações</a>
         </li>
         <li>
-          <a href="#">Arquivos Locais</a>
+          <a href="javascript">Arquivos Locais</a>
         </li>
         <li>
-          <a href="#">Vídeos</a>
+          <a href="javascript">Vídeos</a>
         </li>
         <li>
-          <a href="#">Podcasts</a>
+          <a href="javascript">Podcasts</a>
         </li>
       </div>
 
@@ -56,7 +56,7 @@ const Sidebar = () => (
           <span>PLAYLISTS</span>
         </li>
         <li>
-          <a href="#">Melhores da Semana</a>
+          <a href="javascript">Melhores da Semana</a>
         </li>
       </div>
     </nav>
