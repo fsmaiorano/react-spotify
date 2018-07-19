@@ -1,0 +1,69 @@
+.sidebar {
+  height: 100%;
+  width: 200px;
+  background: #121212;
+  color: #b3b3b3;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  font-size: 1.1em;
+
+  &__navigation {
+    padding: 2rem;
+    list-style: none;
+  }
+
+  &__navigation-content {
+    margin-top: 2rem;
+    &:nth-child(1) {
+      margin-top: 0;
+    }
+
+    &--main {
+        font-weight: bold;
+    }
+
+    li {
+      a {
+        color: inherit;
+        text-decoration: none;
+        font-size: 1em;
+        line-height: 32px;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
+      span {
+        font-size: 1.2em;
+        text-transform: uppercase;
+        line-height: 22px;
+        letter-spacing: 0.15em;
+        font-weight: 300;
+      }
+    }
+  }
+
+  &__new-playlist {
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    border-top: 1px solid #282828;
+    font-size: 1em;
+    color: #b3b3b3;
+    display: flex;
+    align-items: center;
+    padding: 1rem 4rem;
+
+    &:hover {
+      color: #fff;
+    }
+
+    > img {
+      margin-right: 1rem;
+    }
+  }
+}

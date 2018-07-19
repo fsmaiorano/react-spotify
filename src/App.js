@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 
 import "./assets/styles/main.scss";
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <h1>spotify</h1>
-      </div>
-    );
-  }
-}
+
+import Sidebar from "./components/Sidebar";
+
+const App = () => <Sidebar />;
 
 export default App;
