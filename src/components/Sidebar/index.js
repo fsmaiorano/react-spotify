@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./styles.scss";
+import addPlaylist from '../../assets/images/add_playlist.svg';
 
 const Sidebar = () => (
   <aside className="sidebar">
@@ -61,7 +62,7 @@ const Sidebar = () => (
     </nav>
 
     <div className="sidebar__new-playlist">
-      <img src="../../assets/images/add_playlist.svg" alt="" />
+      <img src={addPlaylist} alt="" />
       <span>Nova Playlist</span>
     </div>
   </aside>
