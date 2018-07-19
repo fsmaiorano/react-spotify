@@ -49,6 +49,15 @@ const Sidebar = () => (
           <a href="#">Podcasts</a>
         </li>
       </div>
+
+      <div className="sidebar__navigation-content sidebar__navigation-content">
+        <li>
+          <span>PLAYLISTS</span>
+        </li>
+        <li>
+          <a href="#">Melhores da Semana</a>
+        </li>
+      </div>
     </nav>
 
     <div className="sidebar__new-playlist">
