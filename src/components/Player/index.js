@@ -4,6 +4,8 @@ import Sound from "react-sound";
 import PropTypes from "prop-types";
 
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { Creators as PlayerActions } from "../../store/ducks/player";
 
 import "./styles.scss";
 
@@ -15,7 +17,7 @@ import pauseIcon from "../../assets/images/pause.svg";
 import forwardIcon from "../../assets/images/forward.svg";
 import repeatIcon from "../../assets/images/repeat.svg";
 
-const Player = ({ player }) => (
+const Player = ({ player, play, pause }) => (
   <div className="player">
     {!!player.currentSong && (
       <Sound url={player.currentSong.file} playStatus={player.status} />
@@ -44,9 +46,15 @@ const Player = ({ player }) => (
         <button>
           <img src={backwardIcon} alt="Backward" />
         </button>
-        <button>
-          <img src={playIcon} alt="Play" />
-        </button>
+        {!!player.currentSong && player.status === Sound.status.PLAYING ? (
+          <button onClick={pause}>
+            <img src={pauseIcon} alt="Pause" />
+          </button>
+        ) : (
+          <button onClick={play}>
+            <img src={playIcon} alt="Play" />
+          </button>
+        )}
         <button>
           <img src={forwardIcon} alt="Forward" />
         </button>
@@ -89,11 +97,19 @@ Player.propTypes = {
       file: PropTypes.string
     }),
     status: PropTypes.string
-  }).isRequired
+  }).isRequired,
+  play: PropTypes.func.isRequired,
+  pause: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   player: state.player
 });
 
-export default connect(mapStateToProps)(Player);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(PlayerActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Player);
