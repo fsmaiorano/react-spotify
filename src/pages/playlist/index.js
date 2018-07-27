@@ -5,7 +5,6 @@ import "./styles.scss";
 import ClockIcon from "../../assets/images/clock.svg";
 import PlusIcon from "../../assets/images/plus.svg";
 
-console.tron.log("teste");
 export const Playlist = () => (
   <div className="playlist">
     <div className="playlist__header">
