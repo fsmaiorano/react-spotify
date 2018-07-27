@@ -3,9 +3,9 @@
 
   &--loading {
     height: 100vh;
-    display:flex;
-    align-items: center;   
-    justify-content: center; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__header {
@@ -72,27 +72,36 @@
         }
       }
     }
+  }
 
-    tbody {
-        td {
-            border-top: 1px solid #282828;
-            font-size: 13px;
-            padding: 0 10px;
-            line-height: 40px;
+  &__song-item {
+    td {
+      border-top: 1px solid #282828;
+      font-size: 13px;
+      padding: 0 10px;
+      line-height: 40px;
 
-            &:first-child {
-                width: 80px;
-                text-align: right;
-            }
+      &:first-child {
+        width: 80px;
+        text-align: right;
+      }
 
-            &:last-child {
-                text-align: right;
-            }
-        }
+      &:last-child {
+        text-align: right;
+      }
+      
+    }
 
-        tr:hover td {
-            background: #282828;
-        }
+    &--selected {
+      background: #282828;
+    }
+
+    &--playing {
+      color: #1db854;
+    }
+
+    &:hover td {
+      background: #282828;
     }
   }
 }

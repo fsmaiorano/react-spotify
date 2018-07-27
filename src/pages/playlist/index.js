@@ -36,6 +36,13 @@ class Playlist extends Component {
       loading: PropTypes.bool
     }).isRequired,
     loadSong: PropTypes.func.isRequired,
+    currentSong: PropTypes.shape({
+      id: PropTypes.number,
+    }).isrequired,
+  };
+
+  state = {
+    selectedSong: null
   };
 
   componentDidMount() {
@@ -51,6 +58,25 @@ class Playlist extends Component {
   loadPlaylistDetails = () => {
     const { id } = this.props.match.params;
     this.props.getPlaylistDetailsRequest(id);
+  };
+
+  getClass = song => {
+    if (
+      this.state.selectedSong === song.id &&
+      this.props.currentSong &&
+      this.props.currentSong.id === song.id
+    ) {
+      return "playlist__song-item playlist__song-item--selected playlist__song-item--playing";
+    } 
+    else if(this.state.selectedSong !== song.id && this.props.currentSong && this.props.currentSong.id === song.id)
+    {
+      return "playlist__song-item playlist__song-item--playing";
+    }
+    else if (this.state.selectedSong === song.id) {
+      return "playlist__song-item playlist__song-item--selected";
+    } else {
+      return "playlist__song-item";
+    }
   };
 
   renderDetails = () => {
@@ -88,7 +114,12 @@ class Playlist extends Component {
               </tr>
             ) : (
               playlist.songs.map(song => (
-                <tr key={song.id} onDoubleClick={() => this.props.loadSong(song)}>
+                <tr
+                  className={this.getClass(song)}
+                  key={song.id}
+                  onClick={() => this.setState({ selectedSong: song.id })}
+                  onDoubleClick={() => this.props.loadSong(song)}
+                >
                   <td>
                     <img src={PlusIcon} alt="Adicionar" />
                   </td>
@@ -117,7 +148,8 @@ class Playlist extends Component {
 }
 
 const mapStateToProps = state => ({
-  playlistDetails: state.playlistDetails
+  playlistDetails: state.playlistDetails,
+  currentSong: state.player.currentSong
 });
 
 const mapDispatchToProps = dispatch =>
