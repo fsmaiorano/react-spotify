@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { Creators as PlaylistsActions } from "../../store/ducks/playlists";
 
+import Loading from "../../components/Loading";
 import "./styles.scss";
 
 class Browse extends Component {
@@ -17,7 +18,7 @@ class Browse extends Component {
           id: PropTypes.number,
           title: PropTypes.string,
           thumbnail: PropTypes.string,
-          description: PropTypes.string,
+          description: PropTypes.string
         })
       )
     }).isRequired
@@ -31,7 +32,7 @@ class Browse extends Component {
     return (
       <div className="browse">
         <div className="browse__title">
-          <h1>Navegar</h1>
+          <h1>Navegar {this.props.playlists.loading && <Loading height={30} />}</h1>
         </div>
 
         <div className="browse__list-of-playlist">
@@ -41,10 +42,7 @@ class Browse extends Component {
               to={`/playlists/${playlist.id}`}
               className="browse__playlist"
             >
-              <img
-                src={playlist.thumbnail}
-                alt={playlist.title}
-              />
+              <img src={playlist.thumbnail} alt={playlist.title} />
               <strong>{playlist.title}</strong>
               <p>{playlist.description}</p>
             </Link>

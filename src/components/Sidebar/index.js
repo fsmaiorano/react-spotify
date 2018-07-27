@@ -7,10 +7,11 @@ import { bindActionCreators } from "redux";
 import { Creators as PlaylistsActions } from "../../store/ducks/playlists";
 
 import "./styles.scss";
+import Loading from "../../components/Loading";
 import addPlaylist from "../../assets/images/add_playlist.svg";
 
 class Sidebar extends Component {
-  static PropTypes = {
+  static propTypes = {
     getPlaylistsRequest: PropTypes.func.isRequired,
     playlists: PropTypes.shape({
       data: PropTypes.arrayOf(
@@ -18,7 +19,8 @@ class Sidebar extends Component {
           id: PropTypes.number,
           title: PropTypes.string
         })
-      )
+      ),
+      loading: PropTypes.bool
     }).isRequired
   };
 
@@ -75,9 +77,12 @@ class Sidebar extends Component {
             </li>
           </div>
 
-          <div className="sidebar__navigation-content sidebar__navigation-content">
+          <div className="sidebar__navigation-content">
             <li>
               <span>PLAYLISTS</span>
+              <div className="sidebar__navigation-loading">
+                {this.props.playlists.loading && <Loading />}
+              </div>
             </li>
             {this.props.playlists.data.map(playlist => (
               <li key={playlist.id}>
