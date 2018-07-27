@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
 import "./styles.scss";
+import './config/reactotron';
 
 import Sidebar from "./components/Sidebar";
 import Player from "./components/Player";
