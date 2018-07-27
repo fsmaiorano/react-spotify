@@ -1,0 +1,22 @@
+.error-box {
+  height: 40px;
+  line-height: 20rem;
+  padding: 0 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background: #F55a5a;
+  margin: 20px 0 10px;
+  font-size: 1.3rem;
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+      border: 0;
+      background: transparent;
+
+      img {
+          height: 1.4rem;
+      }
+  }
+}
