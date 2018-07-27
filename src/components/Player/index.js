@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Slider from "rc-slider";
 import Sound from "react-sound";
 import PropTypes from "prop-types";
@@ -18,20 +18,22 @@ import repeatIcon from "../../assets/images/repeat.svg";
 const Player = ({ player }) => (
   <div className="player">
     {!!player.currentSong && (
-      <Sound
-        url={player.currentSong.file}
-        playStatus={player.status}
-      />
+      <Sound url={player.currentSong.file} playStatus={player.status} />
     )}
+
     <div className="player__current-music">
-      <img
-        src="http://www.progarchives.com/progressive_rock_discography_covers/2629/cover_4121221842012_r.jpg"
-        alt="Album"
-      />
-      <div className="player__current-music-info">
-        <span>The Trooper</span>
-        <small>Iron Maiden</small>
-      </div>
+      {!!player.currentSong && (
+        <Fragment>
+          <img
+            src={player.currentSong.thumbnail}
+            alt={player.currentSong.title}
+          />
+          <div className="player__current-music-info">
+            <span>{player.currentSong.title}</span>
+            <small>{player.currentSong.author}</small>
+          </div>
+        </Fragment>
+      )}
     </div>
 
     <div className="player__handle">
@@ -81,6 +83,9 @@ const Player = ({ player }) => (
 Player.propTypes = {
   player: PropTypes.shape({
     currentSong: PropTypes.shape({
+      thumbnail: PropTypes.string,
+      title: PropTypes.string,
+      author: PropTypes.string,
       file: PropTypes.string
     }),
     status: PropTypes.string
