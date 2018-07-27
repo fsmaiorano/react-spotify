@@ -30,6 +30,7 @@ const Player = ({
   setPosition,
   positionShown,
   progress,
+  setVolume,
 }) => (
   <div className="player">
     {!!player.currentSong && (
@@ -39,6 +40,7 @@ const Player = ({
         onFinishedPlaying={next}
         onPlaying={playing}
         position={player.position}
+        volume={player.volume}
       />
     )}
 
@@ -105,7 +107,8 @@ const Player = ({
         railStyle="{{background: '#404040' , border-radius: 10}}"
         trackStyle="{{ background: '#FFF'}}"
         handleStyle="{{display: 'none'}}"
-        value={100}
+        value={player.volume}
+        onChange={setVolume}
       />
     </div>
   </div>
@@ -128,6 +131,7 @@ Player.propTypes = {
   playing: PropTypes.func.isRequired,
   handlePosition: PropTypes.func.isRequired,
   setPosition: PropTypes.func.isRequired,
+  setVolume: PropTypes.func.isRequired,
   position: PropTypes.string.isRequired,
   duration: PropTypes.string.isRequired,
   positionShown: PropTypes.string.isRequired,
