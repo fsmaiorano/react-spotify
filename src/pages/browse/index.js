@@ -1,25 +1,68 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { bindActionCreators } from "redux";
+import { Creators as PlaylistsActions } from "../../store/ducks/playlists";
 
 import "./styles.scss";
 
-const Browse = () => (
-  <div className="browse">
-    <div className="browse__title">
-      <h1>Navegar</h1>
-    </div>
+class Browse extends Component {
+  static PropTypes = {
+    getPlaylistsRequest: PropTypes.func.isRequired,
+    playlists: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          title: PropTypes.string,
+          thumbnail: PropTypes.string,
+          description: PropTypes.string,
+        })
+      )
+    }).isRequired
+  };
 
-    <div className="browse__list-of-playlist">
-      <Link to="/playlists/1" className="browse__playlist">
-        <img
-          src="http://www.progarchives.com/progressive_rock_discography_covers/2629/cover_4121221842012_r.jpg"
-          alt="Album"
-        />
-        <strong>Rock</strong>
-        <p>Melhores do rock que você curte ouvir enquanto trabalha</p>
-      </Link>
-    </div>
-  </div>
-);
+  componentDidMount() {
+    this.props.getPlaylistsRequest();
+  }
 
-export default Browse;
+  render() {
+    return (
+      <div className="browse">
+        <div className="browse__title">
+          <h1>Navegar</h1>
+        </div>
+
+        <div className="browse__list-of-playlist">
+          {this.props.playlists.data.map(playlist => (
+            <Link
+              key={playlist.id}
+              to={`/playlists/${playlist.id}`}
+              className="browse__playlist"
+            >
+              <img
+                src={playlist.thumbnail}
+                alt={playlist.title}
+              />
+              <strong>{playlist.title}</strong>
+              <p>{playlist.description}</p>
+            </Link>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  playlists: state.playlists
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(PlaylistsActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Browse);
