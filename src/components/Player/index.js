@@ -17,10 +17,24 @@ import pauseIcon from "../../assets/images/pause.svg";
 import forwardIcon from "../../assets/images/forward.svg";
 import repeatIcon from "../../assets/images/repeat.svg";
 
-const Player = ({ player, play, pause }) => (
+const Player = ({
+  player,
+  play,
+  pause,
+  next,
+  prev,
+  playing,
+  position,
+  duration
+}) => (
   <div className="player">
     {!!player.currentSong && (
-      <Sound url={player.currentSong.file} playStatus={player.status} />
+      <Sound
+        url={player.currentSong.file}
+        playStatus={player.status}
+        onFinishedPlaying={next}
+        onPlaying={playing}
+      />
     )}
 
     <div className="player__current-music">
@@ -43,7 +57,7 @@ const Player = ({ player, play, pause }) => (
         <button>
           <img src={shuffleIcon} alt="Shuffle" />
         </button>
-        <button>
+        <button onClick={prev}>
           <img src={backwardIcon} alt="Backward" />
         </button>
         {!!player.currentSong && player.status === Sound.status.PLAYING ? (
@@ -55,7 +69,7 @@ const Player = ({ player, play, pause }) => (
             <img src={playIcon} alt="Play" />
           </button>
         )}
-        <button>
+        <button onClick={next}>
           <img src={forwardIcon} alt="Forward" />
         </button>
         <button>
@@ -64,7 +78,7 @@ const Player = ({ player, play, pause }) => (
       </div>
 
       <div className="player__time">
-        <span>1:39</span>
+        <span>{position}</span>
         <div className="player__time-progress">
           <Slider
             railStyle="{{background: '#404040' , border-radius: 10}}"
@@ -72,7 +86,7 @@ const Player = ({ player, play, pause }) => (
             handleStyle="{{border: 0}}"
           />
         </div>
-        <span>4:42</span>
+        <span>{duration}</span>
       </div>
     </div>
 
@@ -99,11 +113,26 @@ Player.propTypes = {
     status: PropTypes.string
   }).isRequired,
   play: PropTypes.func.isRequired,
-  pause: PropTypes.func.isRequired
+  pause: PropTypes.func.isRequired,
+  next: PropTypes.func.isRequired,
+  prev: PropTypes.func.isRequired,
+  playing: PropTypes.func.isRequired,
+  position: PropTypes.string.isRequired,
+  duration: PropTypes.string.isRequired,
 };
 
+function msToTime(duration) {
+  let seconds = parseInt((duration / 1000) % 60, 10);
+  const minutes = parseInt((duration / (1000 * 60)) % 60, 10);
+
+  seconds = seconds < 10 ? `0${seconds}` : seconds;
+  return `${minutes}:${seconds}`;
+}
+
 const mapStateToProps = state => ({
-  player: state.player
+  player: state.player,
+  position: msToTime(state.player.position),
+  duration: msToTime(state.player.duration)
 });
 
 const mapDispatchToProps = dispatch =>
